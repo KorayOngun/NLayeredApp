@@ -14,5 +14,8 @@ namespace Business.Abstract
         void Delete(Product product);
         void Update(Product product);
 
+        List<Product> GetAllByCategoryId(int id);
+        List<Product> GetByUnitPrice(decimal min, decimal max);
+
     }
 }

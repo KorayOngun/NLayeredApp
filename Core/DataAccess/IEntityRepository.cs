@@ -1,16 +1,17 @@
-﻿using Entities.Concrete;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
-using Entities.Abstract;
-namespace DataAccess.Abstract
+using Core.Entities;
+
+namespace Core.DataAccess
 {
-    //class : referans tip
-// IEntity : Ientity veya implemente eden nesne
-// new(): newlebilir nesneler
+//class : referans tip
+// IEntity : IEntity veya implemente eden nesne
+// new(): new'lebilir nesneler
 
     public interface IEntityRepository<T> where T : class,IEntity,new()
     {

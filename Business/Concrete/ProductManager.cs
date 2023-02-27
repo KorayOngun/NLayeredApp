@@ -17,7 +17,7 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
-
+        
         public void Add(Product product)
         {
             _productDal.Add(product);
@@ -34,9 +34,25 @@ namespace Business.Concrete
             return _productDal.GetAll();
         }
 
+        public List<Product> GetAllByCategoryId(int id)
+        {
+            return _productDal.GetAll(x=>x.CategoryId==id).ToList();
+        }
+
+        public List<Product> GetByUnitPrice(decimal min, decimal max)
+        {
+            return _productDal.GetAll(x => x.UnitPrice >= min && x.UnitPrice <= max).ToList();
+        }
+
         public void Update(Product product)
         {
             _productDal.Update(product);
         }
+        public void Puan()
+        {
+            _productDal.Puan();
+        }
     }
 }
+
+

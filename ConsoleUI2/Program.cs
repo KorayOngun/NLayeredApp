@@ -11,8 +11,10 @@ class Program
     
     static void Main()
     {
-        ProductManager productDal = new(new EfProductDal());
-        foreach (var item in productDal.GetAll())
+        //ProductTest();
+        CategoryTest();
+        ProductManager product = new ProductManager(new EfProductDal());
+        foreach (var item in product.GetAll())
         {
             Console.WriteLine(item.ProductName);
         }
@@ -64,7 +66,25 @@ class Program
         //    }
         //}
         #endregion
-        
+
+    }
+
+    private static void CategoryTest()
+    {
+        CategoryManager category = new CategoryManager(new EfCategoryDal());
+        foreach (var item in category.GetAll())
+        {
+            Console.WriteLine(item.CategoryName);
+        }
+    }
+
+    private static void ProductTest()
+    {
+        ProductManager productDal = new(new EfProductDal());
+        foreach (var item in productDal.GetAllByCategoryId(2))
+        {
+            Console.WriteLine(item.ProductName);
+        }
     }
     #region
     //static void Add(Product product)
@@ -86,5 +106,5 @@ class Program
     //{
     //    productDal.Update(product);
     //}
-    #endregion 
+    #endregion
 }
