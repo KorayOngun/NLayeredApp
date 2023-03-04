@@ -12,9 +12,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCategoryDal : EfEntityRepositoryBase<Category, NortwindContext>, ICategoryDal
     {
-        public override void Add(Category entity)
-        {
-            
-        }
+       
     }
 }

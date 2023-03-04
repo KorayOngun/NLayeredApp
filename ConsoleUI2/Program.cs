@@ -11,62 +11,28 @@ class Program
     
     static void Main()
     {
+        // Data Transformation Object
         //ProductTest();
-        CategoryTest();
-        ProductManager product = new ProductManager(new EfProductDal());
-        foreach (var item in product.GetAll())
+        //CategoryTest();
+        //ProductDetails();
+    }
+
+    private static void ProductDetails()
+    {
+        ProductManager manager = new ProductManager(new EfProductDal());
+        var result = manager.GetProductDetails();
+        if (result.Success == true) 
         {
-            Console.WriteLine(item.ProductName);
+            foreach (var item in result.Data )
+            {
+                Console.WriteLine($"{item.ProductName}/{item.CategoryName}");
+            }
         }
-        #region
-        //Product p = new Product();
-        //while (isRun)
-        //{
-        //    Console.WriteLine("işlem seçiniz");
-        //    Console.WriteLine("1) Listeleme");
-        //    Console.WriteLine("2) silme");
-        //    Console.WriteLine("3) ekle");
-        //    Console.WriteLine("4) güncelleme");
-        //    int a = Convert.ToInt32(Console.ReadLine());
-        //    if (a>1)
-        //    {
-        //        Console.WriteLine("name");
-        //        var name = Console.ReadLine();
-        //        Random random = new Random();
-        //        Console.WriteLine("id");
-        //        var ıd = Convert.ToInt32(Console.ReadLine());
-        //        var unitStock = random.Next(1000);
-        //        Console.WriteLine("unit price");
-        //        var price = Convert.ToInt32(Console.ReadLine());
-        //        p.ProductId = ıd;
-        //        p.UnitsInStokc = (short)unitStock;
-        //        p.ProductName = name;
-        //        p.UnitPrice = price;
-        //        p.CategoryId = 1;
-
-        //    }
-        //    switch (a)
-        //    {
-        //        case 1:
-        //            Listele();
-        //            break;
-        //        case 2:
-        //            Delete(p);
-        //            break;
-        //        case 3:
-        //            Add(p);
-        //            break;
-        //        case 4:
-        //            Update(p);
-        //            break;
-        //        default:
-        //            isRun = false;
-        //            continue;
-
-        //    }
-        //}
-        #endregion
-
+        else
+        {
+            Console.WriteLine(result.Message); 
+        }
+       
     }
 
     private static void CategoryTest()
@@ -81,7 +47,7 @@ class Program
     private static void ProductTest()
     {
         ProductManager productDal = new(new EfProductDal());
-        foreach (var item in productDal.GetAllByCategoryId(2))
+        foreach (var item in productDal.GetAllByCategoryId(2).Data)
         {
             Console.WriteLine(item.ProductName);
         }
